@@ -1,4 +1,4 @@
-name: rvm
+name: jerry-rvm-node
 version: 4.0.0
 inherits: wercker/ubuntu12.04-webessentials@1.0.4
 type: main
@@ -16,6 +16,9 @@ packages:
 keywords:
     - ruby
     - rvm
+    - nodejs
+    - karma
+    - karma-cli
 script: |
     sudo apt-get update -y
     sudo apt-get install git zlib1g-dev libreadline-dev libqtwebkit-dev curl -y
@@ -37,6 +40,7 @@ script: |
     echo "gem: --no-rdoc --no-ri" >> $HOME/.gemrc
     echo "RAILS_ENV=test" | sudo tee -a /etc/environment
     echo "RACK_ENV=test" | sudo tee -a /etc/environment
+    npm install karma karma-jasmine karma-phantomjs-launcher karma-cli --save-dev
 
 box-detect:
     priority: 200
